@@ -55,6 +55,7 @@ declare -a SHORTCUTS=(
     "Toggle Cursor|${SHORTCUTS_DIR}/toggle-cursor.sh|<Control><Alt><Shift>r"
     "Toggle Firefox|${SHORTCUTS_DIR}/toggle-firefox.sh|<Control><Alt><Shift>f"
     "Toggle WhatsApp|${SHORTCUTS_DIR}/toggle-whatsapp.sh|<Control><Alt><Shift>w"
+    "Toggle Antigravity|${SHORTCUTS_DIR}/toggle-antigravity.sh|<Control><Alt><Shift>a"
 )
 
 # Get existing custom keybindings
@@ -152,6 +153,7 @@ echo "  Ctrl+Alt+Shift+D = DBeaver (cycle through windows)"
 echo "  Ctrl+Alt+Shift+R = Cursor (cycle through windows)"
 echo "  Ctrl+Alt+Shift+F = Firefox (cycle through windows)"
 echo "  Ctrl+Alt+Shift+W = WhatsApp (cycle through windows)"
+echo "  Ctrl+Alt+Shift+A = Antigravity (cycle through windows)"
 echo ""
 echo "Features:"
 echo "  - Opens app if not running"
