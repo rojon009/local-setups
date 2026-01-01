@@ -1,0 +1,47 @@
+services:
+  samba:
+    image: servercontainers/samba:latest
+    container_name: samba
+    restart: unless-stopped
+
+    network_mode: bridge
+    ports:
+      - "127.0.0.1:445:445" # bind to localhost only (VERY IMPORTANT)
+      - "127.0.0.1:139:139"
+
+    volumes:
+      - ./data:/shares/data
+      - ./config:/config
+
+    environment:
+      SAMBA_LOG_LEVEL: "1"
+      AVAHI_DISABLE: "1"
+
+      SAMBA_GLOBAL_STANZA: |
+        server min protocol = SMB3_11
+        server max protocol = SMB3_11
+        smb encrypt = required
+        ntlm auth = no
+        lanman auth = no
+        client lanman auth = no
+        client ntlmv2 auth = yes
+        map to guest = never
+        restrict anonymous = 2
+        disable netbios = yes
+        unix extensions = no
+        server signing = mandatory
+
+      SAMBA_VOLUME_CONFIG_data: |
+        [data]
+        path = /shares/data
+        valid users = @smbusers
+        read only = no
+        browseable = no
+
+# create user and group
+# docker exec -it samba samba-useradd rojon strongpassword
+# docker exec -it samba samba-groupadd smbusers
+# docker exec -it samba samba-groupadduser smbusers rojon
+
+# set password for user
+# docker exec -it samba samba-passwd rojon
