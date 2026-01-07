@@ -6,13 +6,11 @@ services:
 
     network_mode: bridge
     ports:
-      - "127.0.0.1:445:445" # bind to localhost only (VERY IMPORTANT)
-      - "127.0.0.1:139:139"
-
+      - "445:445"
+      - "139:139"
     volumes:
       - ./data:/shares/data
       - ./config:/config
-
     environment:
       SAMBA_LOG_LEVEL: "1"
       AVAHI_DISABLE: "1"
